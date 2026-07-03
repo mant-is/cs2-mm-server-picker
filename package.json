@@ -18,7 +18,7 @@
   },
   "scripts": {
     "build": "npm run build -ws --if-present",
-    "compile": "npm run build && electron-builder build --config electron-builder.mjs -w --x64 --ia32",
+    "compile": "npm run build && electron-builder build --config electron-builder.mjs -l --x64 --arm64",
     "test": "npx playwright test ./tests/e2e.spec.ts",
     "start": "node packages/dev-mode.js",
     "typecheck": "npm run typecheck -ws --if-present",

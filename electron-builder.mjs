@@ -17,23 +17,22 @@ export default /** @type import('electron-builder').Configuration */
   appId: "com.electron.cs2mmserverpicker",
   productName: "Counter Strike 2 Matchmaking Server Picker",
   copyright: "Copyright @ 2025 Simon Sagstetter",
-  win: {
+  // Replaced Windows-specific configuration with Linux targets appropriate for Arch Linux
+  // We produce an AppImage for portability and a pacman package for native Arch installs.
+  linux: {
       target: [
           {
-              target: "nsis",
-              arch: ["x64", "ia32"],
+              target: "AppImage",
+              arch: ["x64", "arm64"],
+          },
+          {
+              target: "pacman",
+              arch: ["x64"],
           },
       ],
+      // Optionally provide category/desktop information, dependencies or maintainer fields here.
   },
-  nsis: {
-      allowElevation: true,
-      createDesktopShortcut: true,
-      createStartMenuShortcut: true,
-      shortcutName: "CS2 Matchmaking Server Picker",
-      deleteAppDataOnUninstall: false,
-      oneClick: true,
-      perMachine: false,
-  },
+  // Keep artifactName generic; electron-builder will substitute the correct extension per target
   artifactName: '${productName}-${version}-${os}-${arch}.${ext}',
   files: [
     'LICENSE*',
